@@ -1,0 +1,50 @@
+//1
+#include <stdio.h>
+
+int main()
+{
+    int n,m;
+    int x=-1,y=-1,z=100,w=100;
+    scanf("%d%d",&n,&m);
+    
+    char num[n][m];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            scanf("%c",&num[i][j]);
+            if(num[i][j]=='\n')
+            {
+                j--;
+            }
+        }
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(num[i][j]=='*')
+            {
+                if(i<z)
+                    z=i;
+                if(i>x)
+                    x=i;
+                if(j<w)
+                    w=j;
+                if(j>y)
+                    y=j;
+            }
+        }
+    }
+    
+    for(int i=z;i<=x;i++)
+    {
+        for(int j=w;j<=y;j++)
+        {
+            printf("%c",num[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
