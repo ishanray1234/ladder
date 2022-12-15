@@ -119,3 +119,261 @@ int main()
     return 0;
 }
 
+//5
+int gcd(int a,int b)
+{
+    int x,y;
+    x= a>b?a:b;
+    if(x==a)
+        y=b;
+    else
+        y=a;
+    
+    while(x%y!=0)
+    {
+        int w=x%y;
+        x=y;
+        y=w;
+    }
+    return y;
+}
+int main()
+{
+    int a,b,n;
+    cin>>a>>b>>n;
+    
+    while(n!=0)
+    {
+        n-=gcd(a,n);
+        if(n==0)
+        {
+            cout<<"0";
+            return 0;
+        }
+        n-=gcd(b,n);
+        if(n==0)
+        {
+            cout<<"1";
+            return 0;
+        }
+    }
+    return 0;
+}
+
+//6
+    int n,x,max,min,count=0;
+    cin>>n;
+    cin>>x;
+    min=x;max=x;
+    for(int i=1;i<=n-1;i++)
+    {
+        cin>>x;
+        if(x>max)
+        {
+            max=x;
+            count++;
+        }
+        else if(x<min)
+        {
+            min=x;
+            count++;
+        }
+    }
+    cout<<count;
+    return 0;
+    
+    //7
+int main()
+{
+    /*int n,k,count=0;
+    cin>>n>>k;
+    int arr[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+        if(arr[i]!=0)
+            count++;
+        else
+        {
+            break;
+        }
+    }
+    if(count<=k)
+    {
+        cout<<count;
+        return 0;
+    }
+        
+    int t=arr[k-1],ans=k,j=k;
+    while(arr[j]==t && j<n)
+    {
+        ans++;j++;
+    }
+    cout<<ans;*/
+    
+    //Better solution
+    int n,k,x,y,count=0;
+    cin>>n>>k;
+    for(int i=0;i<n;i++)
+    {
+        cin>>x;count++;
+        if(x==0 && i<=k-1)
+        {
+            cout<<count-1;return 0;
+        }
+        if(i==k-1)
+            y=x;
+        else if(i>k-1)
+        {
+            if(x!=y)
+            {
+                cout<<count-1;return 0;
+            }
+        }
+    }
+    cout<<count;
+    return 0;
+ }
+ 
+ //8
+    int n,m,count=0;
+    cin>>n>>m;
+    for(int i=0;i<=sqrt(n);i++)
+    {
+        if(i+(n-i*i)*(n-i*i)==m)
+            count++;
+    }
+    cout<<count;
+    
+   //9
+   int a,b,c,n,count=0;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>a>>b>>c;
+        if(a+b+c==3 || a+b+c==2)
+            count++;
+    }
+    cout<<count;
+    
+    //10
+    int n;
+    cin>>n;
+    int arr[n],sum=0;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    for(int i=0;i<n;i++)
+        sum+=arr[i];
+    
+    int x,y;
+    cin>>x>>y;
+    int t=abs(x-y);
+    int f=x>y?y:x;
+
+    int sum1=0;
+    
+    for(int i=f-1;i<f-1+t;i++)
+        sum1+=arr[i];
+
+    
+    int ans=(sum-sum1>sum1)?sum1:sum-sum1;
+    cout<<ans;
+    
+    //12 too easy
+    
+    //13
+    void merge(int arr[],int a,int c,int b)
+{
+	int m=c-a+2;
+	int n=b-c+1;
+
+	int arr1[m],arr2[n];
+	arr1[m-1]=199999,arr2[n-1]=199999;
+	for(int i=0;i<m-1;i++)
+		arr1[i]=arr[a+i];
+
+	for(int i=0;i<n-1;i++)
+		arr2[i]=arr[c+i+1];
+
+	int x=0,y=0;
+	for(int i=0;i<m+n-2;i++)
+	{
+		if(arr1[x]<arr2[y])
+		{
+			arr[a+i]=arr1[x];
+			x++;
+		}
+		else 
+		{
+			arr[a+i]=arr2[y];
+			y++;
+		}
+	}
+
+}
+
+void sort(int arr[],int a,int b)
+{
+	if(a>=b)
+		return;
+	
+	int t=(a+b)/2;
+	sort(arr,a,t);
+	sort(arr,t+1,b);
+	merge(arr,a,t,b);
+}
+
+void mergeSort(int input[], int size){
+	sort(input,0,size-1);        
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    mergeSort(arr,n);
+    
+    int count=0;
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]==arr[i+1] && arr[i]!=0)
+        {
+            if(arr[i]==arr[i+2])
+            {
+                cout<<"-1";return 0;
+            }
+            else
+                count++;
+                
+            i++;
+        }
+    }
+    cout<<count;
+}
+    
+    //10
+        int arr[26]={0},count=0;
+    string s;
+    cin>>s;
+    int x=s.size();
+
+    for(int i=0;i<x;i++)
+    {
+        if(arr[(int)(s[i]-'a')]==0)
+        {
+            arr[(int)(s[i]-'a')]=1;
+            count++;
+        }
+    }
+    if(count%2==0)
+        cout<<"CHAT WITH HER!";
+    else
+        cout<<"IGNORE HIM!";
