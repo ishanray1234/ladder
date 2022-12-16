@@ -377,3 +377,27 @@ int main()
         cout<<"CHAT WITH HER!";
     else
         cout<<"IGNORE HIM!";
+	
+	
+//14 too easy
+//15 too easy
+//16 too easy
+//17 too easy just check for int range
+
+//18
+int n;
+    cin>>n;
+    int count=0,x=0;
+    for(int i=1;i<=sqrt(n);i++)
+    {
+        if(x+(i*(i+1)/2)>n)
+        {
+            cout<<count;return 0;
+        }
+        else
+        {
+            x+=(i*(i+1)/2);count++;
+        }
+        
+    }
+    cout<<count;
